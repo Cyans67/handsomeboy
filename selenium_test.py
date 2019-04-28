@@ -16,7 +16,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from referer_proxy import dynamic_load
-from utils.referers import referers
 from utils.useragents import useragent
 
 EXECUTE_PATH = r'C:\Users\22\PycharmProjects\handsomeboy\chromeDriver\chromedriver74.exe'

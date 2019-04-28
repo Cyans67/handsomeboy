@@ -24,6 +24,7 @@ EXECUTE_PATH = r'C:\Users\22\PycharmProjects\handsomeboy\chromeDriver\chromedriv
 # 90
 def search(query_url):
     browser, wait = get_exploer()
+    browser.get(random.choice(referers))
     browser.get(query_url)
     wait.until(
         EC.presence_of_all_elements_located((By.LINK_TEXT, '普通下载'))
@@ -31,7 +32,6 @@ def search(query_url):
 
     submit = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="go"]/a[4]/span')))
     submit.click()
-    time.sleep(10)
     browser.quit()
 
 
@@ -40,8 +40,6 @@ def get_exploer():
     options = webdriver.ChromeOptions()
     options.add_argument(
         'user-agent={}'.format(random.choice(useragent)))
-    options.add_argument(
-        'referer={}'.format(random.choice(referers)))
     browser = webdriver.Chrome(executable_path=EXECUTE_PATH, options=options)
     wait = WebDriverWait(browser, 10)
     return browser, wait

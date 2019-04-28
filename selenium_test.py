@@ -15,6 +15,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from referer_proxy import dynamic_load
 from utils.referers import referers
 from utils.useragents import useragent
 
@@ -23,15 +24,23 @@ EXECUTE_PATH = r'C:\Users\22\PycharmProjects\handsomeboy\chromeDriver\chromedriv
 
 # 90
 def search(query_url):
-    browser, wait = get_exploer()
-    browser.get(random.choice(referers))
+    browser, wait = dynamic_load()
     browser.get(query_url)
-    wait.until(
-        EC.presence_of_all_elements_located((By.LINK_TEXT, '普通下载'))
-    )
-
-    submit = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="go"]/a[4]/span')))
+    browser.implicitly_wait(10)
+    print(browser.page_source)
+    try:
+        wait.until(
+            EC.presence_of_all_elements_located((By.LINK_TEXT, '普通下载'))
+        )
+        submit = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="go"]/a[4]/span')))
+    except:
+        submit = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="tt_6"]/a[1]')))
     submit.click()
+    time.sleep(20)
+    url = 'https://httpbin.org/headers'
+    browser.execute_script('window.location.href = "{}";'.format(url))
+    wait.until(lambda driver: driver.current_url == url)
+    print(browser.page_source)
     browser.quit()
 
 

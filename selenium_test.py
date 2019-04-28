@@ -15,6 +15,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from utils.referers import referers
 from utils.useragents import useragent
 
 EXECUTE_PATH = r'C:\Users\22\PycharmProjects\handsomeboy\chromeDriver\chromedriver74.exe'
@@ -31,6 +32,7 @@ def search(query_url):
     submit = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="go"]/a[4]/span')))
     submit.click()
     time.sleep(10)
+    browser.quit()
 
 
 def get_exploer():
@@ -38,6 +40,8 @@ def get_exploer():
     options = webdriver.ChromeOptions()
     options.add_argument(
         'user-agent={}'.format(random.choice(useragent)))
+    options.add_argument(
+        'referer={}'.format(random.choice(referers)))
     browser = webdriver.Chrome(executable_path=EXECUTE_PATH, options=options)
     wait = WebDriverWait(browser, 10)
     return browser, wait

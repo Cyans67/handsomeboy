@@ -26,7 +26,6 @@ def search(query_url):
     browser, wait = dynamic_load()
     browser.get(query_url)
     browser.implicitly_wait(10)
-    print(browser.page_source)
     try:
         wait.until(
             EC.presence_of_all_elements_located((By.LINK_TEXT, '普通下载'))
@@ -36,10 +35,11 @@ def search(query_url):
         submit = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="tt_6"]/a[1]')))
     submit.click()
     time.sleep(20)
-    url = 'https://httpbin.org/headers'
-    browser.execute_script('window.location.href = "{}";'.format(url))
-    wait.until(lambda driver: driver.current_url == url)
-    print(browser.page_source)
+    print('click over')
+    # url = 'https://httpbin.org/headers'
+    # browser.execute_script('window.location.href = "{}";'.format(url))
+    # wait.until(lambda driver: driver.current_url == url)
+    # # print(browser.page_source)
     browser.quit()
 
 

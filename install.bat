@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 cd packages
 python-3.6.3.exe
 cd ..

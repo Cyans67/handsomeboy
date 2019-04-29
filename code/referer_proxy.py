@@ -4,16 +4,22 @@
 # @Author: Eveline Xue
 # @Date  : 2019/4/28 16:33
 # @Desc  :
+import os
 import random
+import sys
 
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.wait import WebDriverWait
 
-from utils.useragents import useragent
-from utils.referers import referers
+curPath = os.path.abspath(os.path.dirname(__file__))
+rootPath = os.path.split(curPath)[0]
+sys.path.append(rootPath)
 
-phantomjs_driver = r'C:\Users\22\PycharmProjects\handsomeboy\chromeDriver\phantomjs.exe'
+from utils.referers import referers
+from utils.useragents import useragent
+
+phantomjs_driver = r'E:\Codes\xuecode\handsomeboy\chromeDriver\phantomjs.exe'
 
 
 def dynamic_load():

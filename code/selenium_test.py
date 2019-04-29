@@ -15,10 +15,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from code.referer_proxy import dynamic_load
+from referer_proxy import dynamic_load
 from utils.useragents import useragent
 
-EXECUTE_PATH = r'C:\Users\22\PycharmProjects\handsomeboy\chromeDriver\chromedriver74.exe'
+EXECUTE_PATH = r'E:\Codes\xuecode\handsomeboy\chromeDriver\chromedriver74.exe'
 
 
 # 90
